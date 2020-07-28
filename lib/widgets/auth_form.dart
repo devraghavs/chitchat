@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AuthForm extends StatefulWidget {
   @override
@@ -60,6 +61,7 @@ class _AuthFormState extends State<AuthForm> {
                   if (!_isLogin)
                   TextFormField(
                     key:ValueKey('Username'),
+                    inputFormatters: [LengthLimitingTextInputFormatter(5)],
                      validator: (value){
                       if (value.isEmpty || value.length < 8){
                         return 'Username must be at least 8 characters long!';
@@ -95,6 +97,7 @@ class _AuthFormState extends State<AuthForm> {
                   RaisedButton(
                     child: Text(_isLogin?'Login': 'Signup'),
                     onPressed: _trySubmit,
+
                   ),
                   FlatButton(
                     //textColor: Theme.of(context).primaryColor,
